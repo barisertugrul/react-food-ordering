@@ -15,11 +15,11 @@ body {
   margin: 0;
 }
 
-.link-item{
-  @apply  hover:text-primary cursor-pointer;
+.link-item {
+  @apply  hover:text-primary cursor-pointer transition-all;
 }
 
-.header-nav-link{
+.header-nav-link {
   @apply px-[5px] py-[20px] uppercase;
 }
 
