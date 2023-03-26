@@ -6,11 +6,23 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+.link-item{
+  @apply  hover:text-primary cursor-pointer;
+}
+
+.header-nav-link{
+  @apply px-[5px] py-[20px] uppercase;
+}
+
+.btn-primary {
+  @apply text-white px-[30px] py-[8px] rounded-3xl bg-primary hover:opacity-70 transition-all;
 }

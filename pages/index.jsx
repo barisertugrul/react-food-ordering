@@ -1,3 +1,4 @@
+import Header from '@/components/layout/Header'
 import Head from 'next/head'
 import Home from "./home"
 
@@ -13,6 +14,7 @@ export default function Index() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
         
       </Head>
+      <Header />
       <Home />
     </div>
   )
