@@ -15,6 +15,10 @@ body {
   margin: 0;
 }
 
+.container {
+  @apply w-10/12;
+}
+
 .link-item {
   @apply  hover:text-primary cursor-pointer transition-all;
 }

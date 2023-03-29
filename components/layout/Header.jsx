@@ -4,13 +4,18 @@ import { FaUserAlt, FaShoppingCart, FaSearch } from 'react-icons/fa'
 import { GiHamburgerMenu, GiCancel } from 'react-icons/gi'
 import Logo from "../ui/Logo"
 import SearchComponent from "../ui/SearchComponent"
+import { useRouter } from "next/router"
 
 const Header = () => {
     const [isSearchModal, setIsSearchModal] = useState(false)
     const [isMenuModal, setIsMenuModal] = useState(false)
+
+    const router = useRouter()
   return (
-    <div className="h-[5.5rem] bg-secondary">
-        <div className="container mx-auto text-white flex justify-between items-center h-full">
+    <div className={`h-[5.5rem] z-40 relative ${
+        router.asPath === "/" ? "bg-transparent" : "bg-secondary"
+    }`}>
+        <div className="container mx-auto text-white flex justify-between items-center h-full sm:w-10/12">
             <Logo/>
             {
                 //Benim çözüm
@@ -19,7 +24,7 @@ const Header = () => {
             {
                 // Hocanın çözümü
             }
-            <nav className={`sm:static absolute top-0 left-0 sm:w-auto sm:h-auto h-full w-full sm:text-white text-black sm:bg-transparent bg-white sm:flex hidden ${isMenuModal === true && '!grid place-content-center'}`}>
+            <nav className={`sm:static absolute top-0 left-0 sm:w-auto sm:h-auto h-full w-full h-screen sm:text-white text-black sm:bg-transparent bg-white sm:flex hidden ${isMenuModal === true && '!grid place-content-center'}`}>
                 <ul className="flex gap-x-2 sm:flex-row flex-col items-center">
                     <li className="link-item header-nav-link">
                         <a href="">Home</a>
