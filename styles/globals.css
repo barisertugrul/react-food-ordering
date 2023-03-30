@@ -30,3 +30,19 @@ body {
 .btn-primary {
   @apply text-white px-[30px] py-[8px] rounded-3xl bg-primary hover:opacity-70 transition-all;
 }
+
+.slick-slider {
+  @apply max-sm:pl-[1.5rem] max-sm:pr-[1rem];
+}
+
+.slick-dots {
+  @apply !flex justify-start w-full relative align-middle sm:ml-[5rem] w-fit;
+}
+
+.slick-dots .slick-active div{
+  @apply bg-primary w-[15px] h-[15px] !mt-[-2px];
+}
+
+.slick-dots div{
+  @apply !m-0;
+}

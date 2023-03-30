@@ -24,7 +24,7 @@ const Header = () => {
             {
                 // Hocanın çözümü
             }
-            <nav className={`sm:static absolute top-0 left-0 sm:w-auto sm:h-auto h-full w-full h-screen sm:text-white text-black sm:bg-transparent bg-white sm:flex hidden ${isMenuModal === true && '!grid place-content-center'}`}>
+            <nav className={`sm:static absolute top-0 left-0 sm:w-auto sm:h-auto w-full h-screen sm:text-white text-black sm:bg-transparent bg-white sm:flex hidden ${isMenuModal === true && '!grid place-content-center'}`}>
                 <ul className="flex gap-x-2 sm:flex-row flex-col items-center">
                     <li className="link-item header-nav-link">
                         <a href="">Home</a>
@@ -58,7 +58,7 @@ const Header = () => {
                 <a className="link-item md:inline-block hidden sm" href="">
                     <button className="btn-primary">Order Online</button>
                 </a>
-                <button className="link-item max-sm:block hidden" onClick={() => {
+                <button className="link-item max-sm:block hidden whitespace-nowrap" onClick={() => {
                     setIsMenuModal(!isMenuModal)
                     console.log(isMenuModal? "True":"False")
                     }}>
