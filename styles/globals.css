@@ -36,7 +36,7 @@ body {
 }
 
 .slick-dots {
-  @apply !flex justify-start w-full relative align-middle sm:ml-[5rem] w-fit;
+  @apply !flex justify-start max-w-max relative align-middle sm:ml-[5rem];
 }
 
 .slick-dots .slick-active div{
