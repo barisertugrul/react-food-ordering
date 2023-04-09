@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from '@/components/layout/Header'
 import Home from "./home"
 import Input from '@/components/form/Input'
+import Reservation from '@/components/Reservation'
 
 export default function Index() {
   return (
@@ -17,9 +18,7 @@ export default function Index() {
       </Head>
       <Header />
       <Home />
-      <div className='p-20 container mx-auto'>
-        <Input type="email" placeholder="E-mail" isrequired={true} />
-      </div>
+      <Reservation />
     </div>
   )
 }
