@@ -1,5 +1,4 @@
 import { useState } from "react"
-import OutsideClickHandler from "react-outside-click-handler"
 import { FaUserAlt, FaShoppingCart, FaSearch } from 'react-icons/fa'
 import { GiHamburgerMenu, GiCancel } from 'react-icons/gi'
 import Logo from "../ui/Logo"

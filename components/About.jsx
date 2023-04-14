@@ -1,4 +1,4 @@
-import Image from "next/legacy/image"
+import Image from "next/image"
 import Title from "./ui/Title"
 
 const About = () => {
@@ -7,7 +7,15 @@ const About = () => {
         <div className='container mx-auto flex items-center text-white gap-19 justify-center flex-wrap-reverse'>
             <div className="flex justify-center sm:w-1/2">
                 <div className="relative sm:w-[445px] sm:h-[600px] w-[300px] h-[450px] flex justify-center">
-                    <Image src="/images/about-img.png" alt="" layout="fill" className=""/>
+                    <Image
+                        src="/images/about-img.png"
+                        alt=""
+                        fill
+                        className=""
+                        sizes="(max-width: 768px) 100vw,
+                        (max-width: 1200px) 100vw,
+                        100vw"
+                    />
                 </div>
             </div>
             <div className="sm:w-1/2 max-sm:flex flex-wrap max-sm:mb-10 max-sm:justify-center sm:pl-5">

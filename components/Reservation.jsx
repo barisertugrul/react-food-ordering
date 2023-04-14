@@ -2,63 +2,74 @@ import React from 'react'
 import Input from './form/Input'
 import Title from './ui/Title'
 import { Formik, useFormik } from 'formik';
+import { reservationSchema } from '@/schema/reservation';
 
 const Reservation = () => {
-
     const onSubmit = async (values, actions) => {
         await new Promise((resolve) => setTimeout(resolve, 400))
         actions.resetForm()
     }
-    const {values, handleSubmit, handleChange} = useFormik({
+    const {values, errors, touched, handleSubmit, handleChange, handleBlur} = useFormik({
         initialValues: {
             fullName: "",
             phoneNumber: "",
             email: "",
             persons: "",
-            date: ""
+            date: "",
         },
         onSubmit,
+        validationSchema: reservationSchema,
     })
 
     const inputs = [
         {
-            id: 1,
+            id: "fullName",
             name: "fullName",
             type: "text",
             placeholder: "Your Full Name",
             value: values.fullName,
-            isrequired:true
+            isrequired:true,
+            errorMessage: errors.fullName,
+            touched: touched.fullName
         },
         {
-            id: 2,
+            id: "phoneNumber",
             name: "phoneNumber",
             type: "text",
             placeholder: "Your Phone Number",
             value: values.phoneNumber,
-            isrequired:true
+            isrequired:true,
+            errorMessage: errors.phoneNumber,
+            touched: touched.phoneNumber
         },
         {
-            id: 3,
+            id: "email",
             name: "email",
             type: "email",
             placeholder: "Your E-mail Address",
             value: values.email,
-            isrequired:true
+            isrequired:true,
+            errorMessage: errors.email,
+            touched: touched.email
         },
         {
-            id: 4,
+            id: "persons",
             name: "persons",
             type: "number",
             placeholder: "How Many Persons?",
             value: values.persons,
-            isrequired:true
+            isrequired:true,
+            errorMessage: errors.persons,
+            touched: touched.persons
         },
         {
-            id: 5,
+            id: "date",
             name: "date",
             type: "datetime-local",
             value: values.date,
-            isrequired:true
+            isrequired:true,
+            errorMessage: errors.date,
+            touched: touched.date
         },
     ]
   return (
@@ -67,8 +78,10 @@ const Reservation = () => {
         <div className='flex justify-between flex-wrap-reverse gap-10'>
             <form className='md:flex-1 w-full'  onSubmit={handleSubmit}>
                 <div className='flex flex-col gap-y-3'>
-                    {inputs.map((input) => (
-                        <Input key={input.id} {...input} onChange={handleChange} />
+                    {inputs.map((input, index) => (
+                        <Input key={index} {...input}
+                        onChange={handleChange}
+                        onBlur={handleBlur} />
                     ))}
                 </div>
                 <button type='submit' className="btn-primary mt-5 md:mb-1 mb-5">BOOK NOW</button>

@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Title from "./ui/Title";
 import Slider from "react-slick";
 
@@ -29,8 +29,8 @@ const Carousel = () => {
                     <Image
                         src="/images/hero-bg.jpg"
                         alt=""
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        style={{objectFit:"cover"}}
                     />
                 </div>
             </div>

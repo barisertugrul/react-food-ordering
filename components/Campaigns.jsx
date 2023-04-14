@@ -1,4 +1,4 @@
-import Image from "next/legacy/image"
+import Image from "next/image"
 import Title from "./ui/Title"
 import { MdShoppingCart } from "react-icons/md"
 
@@ -8,7 +8,15 @@ const Campaigns = () => {
         return (
             <div className="bg-secondary flex flex-1 rounded-md py-5 px-[15px] items-center gap-x-4">
                 <div className="relative w-32 h-32  border-[5px] border-primary rounded-full overflow-hidden ">
-                    <Image src="/images/o1.jpg" className="hover:scale-105 transition-all" alt="" layout="fill" objectFit="cover" />
+                    <Image
+                        src="/images/o1.jpg" className="hover:scale-105 transition-all"
+                        alt=""
+                        fill
+                        style={{objectFit:"cover"}}
+                        sizes="(max-width: 768px) 100vw,
+                        (max-width: 1200px) 100vw,
+                        100vw"
+                    />
                 </div>
                 <div className="text-white">
                     <Title className="text-2xl">Tasty Thurdays</Title>

@@ -23,6 +23,7 @@ module.exports = {
       colors: {
         primary: "#ffbe33",
         secondary: "#222831",
+        danger: "#df4759",
       }
     },
     fontFamily: {
