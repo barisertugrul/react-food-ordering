@@ -46,3 +46,23 @@ body {
 .slick-dots div{
   @apply !m-0;
 }
+
+.footer{
+  @apply bg-secondary text-white pt-16 pb-6
+}
+
+.footer .widget-container{
+  @apply flex md:justify-between justify-center text-center md:gap-y-0 gap-y-[30px] gap-x-10 flex-wrap
+}
+
+.footer a:hover{
+  @apply text-primary
+}
+
+.footer-social{
+  @apply flex justify-center gap-x-2 mt-5 mb-[10px]
+}
+
+.footer-social a{
+  @apply w-8 h-8 grid place-content-center bg-white text-secondary rounded-full
+}
