@@ -1,16 +1,16 @@
-import Title from '@/components/ui/Title'
+import Title from '../../components/ui/Title'
 import Image from 'next/image'
 import React from 'react'
 
 const Index
  = () => {
   return (
-    <div className='flex items-center h-screen gap-20 py-20 flex-wrap'>
-        <div className='relative md:flex-1 w-[80%] h-[80%] mx-20'>
+    <div className='flex items-center  md:h-[calc(100vh_-_88px)] gap-5 py-20 flex-wrap'>
+        <div className='relative md:flex-1 md:w-[80%] md:h-[80%] w-36 h-36 mx-auto'>
             <Image
                 src="/images/f1.png" alt=''
-                fill
-                style={{objectFit:"contain"}}
+                layout="fill"
+                objectFit="contain"
                 sizes="(max-width: 768px) 80vw,
                 (max-width: 1200px) 80vw,
                 80vw"
@@ -26,16 +26,16 @@ const Index
                 <h4 className='text-xl font-bold'> Chose the size</h4>
                 <div className='flex items-center gap-x-20 md:justify-start justify-center'>
                     <div className='relative w-8 h-8'>
-                        <Image src="/images/size.png" alt='' fill />
+                        <Image src="/images/size.png" alt='' layout="fill" />
                         <span className='absolute top-0 -right-6 text-xs bg-primary rounded-full px-[5px] font-medium'>Small</span>
                     </div>
                     <div className='relative w-12 h-12'>
-                        <Image src="/images/size.png" alt='' fill />
+                        <Image src="/images/size.png" alt='' layout="fill" />
                         
                         <span className='absolute top-0 -right-6 text-xs bg-primary rounded-full px-[5px] font-medium'>Medium</span>
                     </div>
                     <div className='relative w-16 h-16'>
-                        <Image src="/images/size.png" alt='' fill />
+                        <Image src="/images/size.png" alt='' layout="fill" />
                         <span className='absolute top-0 -right-6 text-xs bg-primary rounded-full px-[5px] font-medium'>Large</span>
                     </div>
                 </div>

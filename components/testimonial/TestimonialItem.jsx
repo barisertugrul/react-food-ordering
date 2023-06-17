@@ -15,8 +15,8 @@ const TestimonialItem = ({testimonial}) => {
             <Image
                 alt=''
                 src={testimonial.image}
-                fill
-                style={{objectFit: "contain"}}
+                layout="fill"
+                objectFit="contain"
                 className='rounded-full'
             />
         </div>

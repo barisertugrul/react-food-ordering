@@ -10,7 +10,7 @@ const About = () => {
                     <Image
                         src="/images/about-img.png"
                         alt=""
-                        fill
+                        layout="fill"
                         className=""
                         sizes="(max-width: 768px) 100vw,
                         (max-width: 1200px) 100vw,

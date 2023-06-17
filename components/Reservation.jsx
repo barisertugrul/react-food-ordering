@@ -2,7 +2,7 @@ import React from 'react'
 import Input from './form/Input'
 import Title from './ui/Title'
 import { Formik, useFormik } from 'formik';
-import { reservationSchema } from '@/schema/reservation';
+import { reservationSchema } from '../schema/reservation';
 
 const Reservation = () => {
     const onSubmit = async (values, actions) => {

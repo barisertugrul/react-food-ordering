@@ -4,6 +4,7 @@ import { GiHamburgerMenu, GiCancel } from 'react-icons/gi'
 import Logo from "../ui/Logo"
 import SearchComponent from "../ui/SearchComponent"
 import { useRouter } from "next/router"
+import Link from "next/link"
 
 const Header = () => {
     const [isSearchModal, setIsSearchModal] = useState(false)
@@ -26,16 +27,16 @@ const Header = () => {
             <nav className={`sm:static absolute top-0 left-0 sm:w-auto sm:h-auto w-full h-screen sm:text-white text-black sm:bg-transparent bg-white sm:flex hidden ${isMenuModal === true && '!grid place-content-center'}`}>
                 <ul className="flex gap-x-2 sm:flex-row flex-col items-center">
                     <li className="link-item header-nav-link">
-                        <a href="">Home</a>
+                        <Link href="/">Home</Link>
                     </li>
                     <li className="link-item header-nav-link">
-                        <a href="">Menu</a>
+                        <Link href="/menu">Menu</Link>
                     </li>
                     <li className="link-item header-nav-link">
-                        <a href="">About</a>
+                        <Link href="/about">About</Link>
                     </li>
                     <li className="link-item header-nav-link">
-                        <a href="">Book Table</a>
+                        <Link href="/reservation">Book Table</Link>
                     </li>
                 </ul>
                     { isMenuModal &&

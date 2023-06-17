@@ -11,8 +11,9 @@ const Campaigns = () => {
                     <Image
                         src="/images/o1.jpg" className="hover:scale-105 transition-all"
                         alt=""
-                        fill
-                        style={{objectFit:"cover"}}
+                        layout="fill"
+                        objectFit="cover"
+                        priority
                         sizes="(max-width: 768px) 100vw,
                         (max-width: 1200px) 100vw,
                         100vw"
