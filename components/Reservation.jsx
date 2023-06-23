@@ -1,7 +1,6 @@
-import React from 'react'
+import { useFormik } from 'formik';
 import Input from './form/Input'
 import Title from './ui/Title'
-import { Formik, useFormik } from 'formik';
 import { reservationSchema } from '../schema/reservation';
 
 const Reservation = () => {
