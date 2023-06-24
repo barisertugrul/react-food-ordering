@@ -46,12 +46,12 @@ const Header = () => {
                     }
             </nav>
             <div className="flex gap-x-4 items-center">
-                <Link href="/auth/login" passHref>
-                    <a><FaUserAlt className="link-item"/></a>
+                <Link href="/auth/login">
+                    <span><FaUserAlt className="link-item"/></span>
                 </Link>
-                <a href="">
-                    <FaShoppingCart className="link-item" />
-                </a>
+                <Link href="/cart">
+                    <span><FaShoppingCart className="link-item" /></span>
+                </Link>
                 <button className="link-item" onClick={() => setIsSearchModal(!isSearchModal)}>
                     <FaSearch />
                 </button>
