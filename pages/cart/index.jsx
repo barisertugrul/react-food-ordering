@@ -16,7 +16,7 @@ const Index = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className='border-b bg-secondary border-gray-700 hover:bg-primary hover:border-white transition-all'>
+                        <tr className='border-b bg-secondary border-gray-700 hover:bg-primary hover:border-white transition-all cursor-pointer'>
                             <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white flex items-center gap-x-1 justify-center'>
                                 <Image src="/images/f1.png" alt="" width={40} height={40} />
                                 <span>Good Pizza</span>

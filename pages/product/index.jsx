@@ -25,16 +25,16 @@ const Index
             <div className='mt-5 md:justify-start justify-center'>
                 <h4 className='text-xl font-bold'> Chose the size</h4>
                 <div className='flex items-center gap-x-20 md:justify-start justify-center'>
-                    <div className='relative w-8 h-8'>
+                    <div className='relative w-8 h-8 cursor-pointer'>
                         <Image src="/images/size.png" alt='' layout="fill" />
                         <span className='absolute top-0 -right-6 text-xs bg-primary rounded-full px-[5px] font-medium'>Small</span>
                     </div>
-                    <div className='relative w-12 h-12'>
+                    <div className='relative w-12 h-12 cursor-pointer'>
                         <Image src="/images/size.png" alt='' layout="fill" />
                         
                         <span className='absolute top-0 -right-6 text-xs bg-primary rounded-full px-[5px] font-medium'>Medium</span>
                     </div>
-                    <div className='relative w-16 h-16'>
+                    <div className='relative w-16 h-16 cursor-pointer'>
                         <Image src="/images/size.png" alt='' layout="fill" />
                         <span className='absolute top-0 -right-6 text-xs bg-primary rounded-full px-[5px] font-medium'>Large</span>
                     </div>
@@ -44,15 +44,15 @@ const Index
                 <h4 className='text-xl font-bold'> Chose additional ingredients</h4>
                 <div className='flex gap-x-4 mt-4 md:justify-start justify-center'>
                     <label className='flex items-center gap-x-1'>
-                        <input type="checkbox" className='w-5 h-5 accent-primary' />
+                        <input type="checkbox" className='w-5 h-5 accent-primary cursor-pointer' />
                         <span className='text-sm font-semibold'>Ketchup</span>
                     </label>
                     <label className='flex items-center gap-x-1'>
-                        <input type="checkbox" className='w-5 h-5 accent-primary' />
+                        <input type="checkbox" className='w-5 h-5 accent-primary cursor-pointer' />
                         <span className='text-sm font-semibold'>Mayonnaise</span>
                     </label>
                     <label className='flex items-center gap-x-1'>
-                        <input type="checkbox" className='w-5 h-5 accent-primary' />
+                        <input type="checkbox" className='w-5 h-5 accent-primary cursor-pointer' />
                         <span className='text-sm font-semibold'>Hot Sauce</span>
                     </label>
                 </div>
