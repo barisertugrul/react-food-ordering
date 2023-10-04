@@ -15,7 +15,7 @@ const Register = () => {
             fullName: "",
             email: "",
             password: "",
-            confirmpassword: "",
+            confirmPassword: "",
         },
         onSubmit,
         validationSchema: registerSchema,
@@ -53,14 +53,14 @@ const Register = () => {
             touched: touched.password
         },
         {
-            id: "confirmpassword",
-            name: "confirmpassword",
+            id: "confirmPassword",
+            name: "confirmPassword",
             type: "password",
             placeholder: "Your Confirm Password",
-            value: values.confirmpassword,
+            value: values.confirmPassword,
             isrequired:true,
-            errorMessage: errors.confirmpassword,
-            touched: touched.confirmpassword
+            errorMessage: errors.confirmPassword,
+            touched: touched.confirmPassword
         },
     ]
   return (

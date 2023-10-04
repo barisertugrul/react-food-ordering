@@ -66,3 +66,7 @@ body {
 .footer-social a{
   @apply w-8 h-8 grid place-content-center bg-white text-secondary rounded-full
 }
+
+.profile-tab-link{
+  @apply border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all
+}
