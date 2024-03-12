@@ -24,6 +24,7 @@ module.exports = {
         primary: "#ffbe33",
         secondary: "#222831",
         danger: "#df4759",
+        success: "#059669",
       }
     },
     fontFamily: {

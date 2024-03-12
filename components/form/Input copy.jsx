@@ -13,11 +13,11 @@ const Input = (props) => {
                 type !== "datetime-local" && "pt-2"
             } 
             ${touched && errorMessage ? "border-danger" : "border-primary"}
-            ${value ? "has-value" : "" }
+            ${value ? "has-value" : "no-value" }
             `}
-            {..._isRequired}
+            required={_isRequired}
            />
-            {type !== "datetime-local" && <span className='absolute top-0 left-0 px-4 text-sm flex items-center h-full peer-focus:h-7 peer-focus:text-xs  peer-[&.has-value]:text-xs peer-[&.has-value]:h-7 transition-all '>{placeholder}</span>}
+            {type !== "datetime-local" && <span className='absolute top-0 left-0 px-4 text-sm flex items-center h-full peer-[&.no-value]:text-sm peer-[&.no-value]:h-full peer-[&.no-value]:items-center !peer-focus:h-7 !peer-focus:text-xs peer-valid:h-7 peer-valid:text-xs  transition-all peer-[&.has-value]:text-xs peer-[&.has-value]:h-7'>{placeholder}</span>}
         </label>
             {touched && errorMessage && 
                 <span className='text-danger text-xs'>{errorMessage}</span>
