@@ -3,21 +3,27 @@ import Title from '../ui/Title'
 import Input from '../form/Input'
 import { useFormik } from 'formik';
 import { profileSchema } from '../../schema/profile';
+import axios from 'axios';
 
-const Account = () => {
+const Account = ({user}) => {
     const onSubmit = async (values, actions) => {
-        await new Promise((resolve) => setTimeout(resolve, 4000))
-        actions.resetForm()
+        try {
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}`, values)
+            actions.resetForm()
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const {values, errors, touched, handleSubmit, handleChange, handleBlur} = useFormik({
+        enableReinitialize: true,
         initialValues: {
-            fullName: "",
-            phoneNumber: "",
-            email: "",
-            address: "",
-            job: "",
-            bio: "",
+            fullName: user?.fullName,
+            phoneNumber: user?.phoneNumber,
+            email: user?.email,
+            address: user?.address,
+            job: user?.job,
+            bio: user?.bio,
         },
         onSubmit,
         validationSchema: profileSchema,
@@ -70,7 +76,7 @@ const Account = () => {
             type: "text",
             placeholder: "Your Job?",
             value: values.job,
-            isrequired:true,
+            isrequired:false,
             errorMessage: errors.job,
             touched: touched.job
         },
@@ -80,7 +86,7 @@ const Account = () => {
             type: "text",
             placeholder: "Your Bio?",
             value: values.bio,
-            isrequired:true,
+            isrequired:false,
             errorMessage: errors.bio,
             touched: touched.bio
         },

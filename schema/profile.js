@@ -15,9 +15,7 @@ export const profileSchema =
             .min(3, "Address must be at least 3 characters or more.")
             .required("Address is required."),
         job: Yup.string()
-            .min(3, "Job must be at least 3 characters or more.")
-            .required("Job is required."),
+            .min(3, "Job must be at least 3 characters or more."),
         bio: Yup.string()
-            .min(3, "Bio must be at least 3 characters or more.")
-            .required("Bio is required."),
+            .min(3, "Bio must be at least 3 characters or more."),
     });

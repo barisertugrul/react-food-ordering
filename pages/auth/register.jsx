@@ -3,10 +3,27 @@ import Title from '../../components/ui/Title'
 import Input from '../../components/form/Input'
 import Link from 'next/link';
 import { registerSchema } from '../../schema/register';
+import axios from 'axios';
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/router';
 
 const Register = () => {
+    const { push } = useRouter()
+
     const onSubmit = async (values, actions) => {
-        await new Promise((resolve) => setTimeout(resolve, 400))
+        try {
+            const res = await axios.post(
+                `${process.env.NEXT_PUBLIC_API_URL}/users/register`,
+                values
+            )
+            if(res.status === 200){
+                toast.success("User created successfully")
+                push("/auth/login")
+            }
+        } catch (error) {
+            toast.error(error.response.data.message)
+            console.log(error)
+        }
         actions.resetForm()
     }
 
@@ -69,8 +86,8 @@ const Register = () => {
         onSubmit={handleSubmit}>
             <Title className="text-[40px] mb-6">Register</Title>
             <div className='flex flex-col gap-y-3 w-full'>
-                {inputs.map((input, index) => (
-                        <Input key={index} {...input}
+                {inputs.map((input) => (
+                        <Input key={input.id} {...input}
                         onChange={handleChange}
                         onBlur={handleBlur} />
                     ))}
