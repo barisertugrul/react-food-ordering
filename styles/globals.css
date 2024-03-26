@@ -70,3 +70,12 @@ body {
 .profile-tab-link{
   @apply border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all
 }
+
+.category-filter-button{
+  @apply px-6 py-2 rounded-3xl
+}
+
+.category-filter-button.active,
+.category-filter-button:hover{
+  @apply bg-secondary text-white
+}
