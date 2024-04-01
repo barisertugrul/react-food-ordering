@@ -112,14 +112,12 @@ const Footer = () => {
             <div className='flex items-center gap-4'>
                 <Input
                     placeholder="Link Address"
-                    defaultValue="https://"
-                    value={newIcon.linkAddress}
+                    value={newIcon.linkAddress || "https://"}
                     onChange={(e) => setNewIcon(prevState => ({ ...prevState, 'linkAddress': e.target.value }))}
                 />
                 <Input
                     placeholder='Icon Name'
-                    defaultValue='fa fa-'
-                    value={newIcon.icon}
+                    value={newIcon.icon || 'fa fa-'}
                     onChange={(e) => setNewIcon(prevState => ({ ...prevState, 'icon': e.target.value }))}
                 />
                 <button

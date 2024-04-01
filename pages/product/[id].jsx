@@ -4,52 +4,14 @@ import { useState } from 'react'
 import { addProduct } from '../../redux/cartSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios'
 
-const itemsExtra = [
-    {
-        id: 1,
-        name: "Extra 1",
-        price: 1,
-    },
-    {
-        id: 2,
-        name: "Ketchup",
-        price: 1,
-    },
-    {
-        id: 3,
-        name: "Mayonnaise",
-        price: 1,
-    },
-    {
-        id: 4,
-        name: "Hot Sauce",
-        price: 2,
-    },
-]
-
-const foodItems = [
-    {
-        id: 1,
-        name: "Pizza 1",
-        price: 10,
-        desc: "Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque",
-        extraOptions: [
-            {
-                id: 1,
-                name: "Extra 1",
-                price: 1,
-            }
-        ]
-    }
-]
-
-const Index = () => {
-    const [prices, setPrices] = useState([10, 20, 30])
+const Index = ({ food }) => {
+    const [prices, setPrices] = useState([...food?.prices])
     const [price, setPrice] = useState(prices[0])
     const [size, setSize] = useState(0)
     const [quantity, setQuantity] = useState(1)
-    const [extraItems, setExtraItems] = useState(itemsExtra)
+    const [extraItems, setExtraItems] = useState(food?.extras)
     const [extras, setExtras] = useState([])
     const cart = useSelector((state) => state.cart)
 
@@ -73,14 +35,14 @@ const Index = () => {
             setExtras([...extras, item])
         }else{
             changePrice(-(item.price))
-            setExtras(extras.filter((extra) => extra.id !== item.id))
+            setExtras(extras.filter((extra) => extra._id !== item._id))
         }
     }
 
     const handleClick = () => {
         dispatch(addProduct(
             {
-                ...foodItems[0],
+                ...food,
                 cartUUID: uuidv4(),
                 extras,
                 price,
@@ -93,21 +55,22 @@ const Index = () => {
     <div className='flex items-center  md:h-[calc(100vh_-_88px)] gap-5 py-20 flex-wrap'>
         <div className='relative md:flex-1 md:w-[80%] md:h-[80%] w-36 h-36 mx-auto'>
             <Image
-                src="/images/f1.png" alt=''
+                src={food?.img} alt={food?.title}
                 layout="fill"
                 objectFit="contain"
                 sizes="(max-width: 768px) 80vw,
                 (max-width: 1200px) 80vw,
                 80vw"
+                priority
             />
         </div>
         <div className='md:flex-1 md:pr-24 pl-10 pr-10 md:text-start text-center'>
-            <Title className="text-6xl" >Delicious Pizza</Title>
+            <Title className="text-6xl" >{food?.title}</Title>
             <span className='text-primary text-2xl font-bold underline underline-offset-1 inline-block my-4'>${price}</span>
             <p className='text-sm my-4'>
-                Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+                {food?.desc}
             </p>
-            <div className='mt-5 md:justify-start justify-center'>
+            {food?.category?.title?.toLowerCase() === "pizza" && <div className='mt-5 md:justify-start justify-center'>
                 <h4 className='text-xl font-bold'> Chose the size</h4>
                 <div className='flex items-center gap-x-20 md:justify-start justify-center'>
                     <div className='relative w-8 h-8 cursor-pointer'
@@ -127,7 +90,7 @@ const Index = () => {
                         <span className='absolute top-0 -right-6 text-xs bg-primary rounded-full px-[5px] font-medium'>Large</span>
                     </div>
                 </div>
-            </div>
+            </div>}
             <div className='mt-5 md:justify-start justify-center'>
                 <h4 className='text-xl font-bold'> Chose additional ingredients</h4>
                 <div className='flex gap-x-4 mt-4 md:justify-start justify-center'>
@@ -136,7 +99,7 @@ const Index = () => {
                         <label key={item.id} className='flex items-center gap-x-1'>
                             <input type="checkbox"
                                 onClick={(e) => handleChange(e, item)} className='w-5 h-5 accent-primary cursor-pointer' />
-                            <span className='text-sm font-semibold'>{item.name}</span>
+                            <span className='text-sm font-semibold'>{item.text}</span>
                         </label>
                     ))
                   }
@@ -178,6 +141,16 @@ const Index = () => {
         </div>
     </div>
   )
+}
+
+export const getServerSideProps = async ({params}) => {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/${params.id}`)
+
+    return {
+        props: {
+            food: res.data ? res.data : null
+        }
+    }
 }
 
 export default Index

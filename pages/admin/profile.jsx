@@ -7,9 +7,12 @@ import Footer from '../../components/admin/Footer'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
+import AddProduct from '../../components/admin/AddProduct'
 
 const Profile = () => {
     const [tabs, setTabs] = useState(0)
+    const [isAddProductModal, setIsAddProductModal] = useState(false)
+    const [isProductAdded, setIsProductAdded] = useState(false)
     const {push} = useRouter()
 
     const logout = async () => {
@@ -56,10 +59,20 @@ const Profile = () => {
                 </li>
             </ul>
         </div>
-        { tabs === 0 && <Products />  }
+        { tabs === 0 && <Products isProductAdded={isProductAdded} />  }
         { tabs === 1 && <Categories />  }
         { tabs === 2 && <Orders /> }
         { tabs === 3 && <Footer /> }
+        {isAddProductModal && <AddProduct setIsAddProductModal={setIsAddProductModal} setIsProductAdded={setIsProductAdded} />}
+        {tabs === 0 && <button
+            className='fixed btn-primary w-12 h-12 !p-0 bottom-6 right-6 text-4xl'
+            onClick={() => {
+                setIsAddProductModal(true)
+                setIsProductAdded(false)
+            }}
+        >
+            +
+        </button>}
     </div>
   )
 }
