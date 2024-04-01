@@ -1,6 +1,14 @@
+import axios from 'axios'
 import Image from 'next/image'
 
-const Order = () => {
+const Order = ({order}) => {
+
+    const status = order?.status
+    const statusClass = (index) => {
+        if(index - status === 0) return "animate-pulse"
+        else return ""
+    }
+
   return (
     <div className='overflow-x-auto'>
         <div className='flex min-h-[calc(100vh_-_420px)] justify-center items-center flex-col p-10 min-w-[750px]'>
@@ -17,31 +25,31 @@ const Order = () => {
                     <tbody>
                         <tr className='border-b bg-secondary border-gray-700 hover:bg-primary hover:border-white transition-all cursor-pointer'>
                             <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white flex items-center gap-x-1 justify-center'>
-                                63107f5559...
+                                {order?._id.substring(0,8)}...
                             </td>
                             <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>
-                                John Doe
+                                {order?.customer.fullName}
                             </td>
-                            <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>İzmir, Türkiye</td>
-                            <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>$18</td>
+                            <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>{order?.address}</td>
+                            <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>${order?.total}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div className='flex justify-between w-full p-10 bg-primary mt-6'>
-                <div className='relative flex flex-col'>
+                <div className={`relative flex flex-col ${statusClass(0)}`}>
                     <Image src="/images/paid.png" alt='' width={40} height={40} objectFit='contain' />
                     <span>Payment</span>
                 </div>
-                <div className='relative flex flex-col animate-pulse'>
+                <div className={`relative flex flex-col ${statusClass(1)}`}>
                     <Image src="/images/bake.png" alt='' width={40} height={40} objectFit='contain' />
                     <span>Preparing</span>
                 </div>
-                <div className='relative flex flex-col'>
+                <div className={`relative flex flex-col ${statusClass(2)}`}>
                     <Image src="/images/bike.png" alt='' width={40} height={40} objectFit='contain' />
                     <span>On the way</span>
                 </div>
-                <div className='relative flex flex-col'>
+                <div className={`relative flex flex-col ${statusClass(3)}`}>
                     <Image src="/images/delivered.png" alt='' width={40} height={40} objectFit='contain' />
                     <span>Delivered</span>
                 </div>
@@ -50,6 +58,16 @@ const Order = () => {
     </div>
     
   )
+}
+
+export const getServerSideProps = async ({params}) => {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders/${params.id}`)
+
+    return {
+        props: {
+            order: res.data ? res.data : null
+        }
+    }
 }
 
 export default Order

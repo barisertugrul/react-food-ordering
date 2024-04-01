@@ -13,7 +13,7 @@ const Index = ({ food }) => {
     const [quantity, setQuantity] = useState(1)
     const [extraItems, setExtraItems] = useState(food?.extras)
     const [extras, setExtras] = useState([])
-    const cart = useSelector((state) => state.cart)
+    //const cart = useSelector((state) => state.cart)
 
     const dispatch = useDispatch()
 
@@ -96,7 +96,7 @@ const Index = ({ food }) => {
                 <div className='flex gap-x-4 mt-4 md:justify-start justify-center'>
                   {
                     extraItems.map((item) => (
-                        <label key={item.id} className='flex items-center gap-x-1'>
+                        <label key={item._id} className='flex items-center gap-x-1'>
                             <input type="checkbox"
                                 onClick={(e) => handleChange(e, item)} className='w-5 h-5 accent-primary cursor-pointer' />
                             <span className='text-sm font-semibold'>{item.text}</span>
@@ -114,7 +114,7 @@ const Index = ({ food }) => {
                                 onClick={
                                     () => (
                                     quantity > 1 ?
-                                        setQuantity(quantity-1) : setQuantity(quantity)
+                                        setQuantity(quantity-1) : setQuantity(1)
                                     )
                                 }
                             >
@@ -122,7 +122,7 @@ const Index = ({ food }) => {
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h16"/>
                                 </svg>
                             </button>
-                            <input type="text" className="bg-gray-50 border-x-0 border-gray-300 h-11 text-sm focus:ring-blue-500 focus:border-blue-500 block py-2.5 w-5 text-center font-bold" placeholder="1" value={quantity} required />
+                            <input type="text" className="bg-gray-50 border-x-0 border-gray-300 h-11 text-sm focus:ring-blue-500 focus:border-blue-500 block py-2.5 w-5 text-center font-bold" placeholder="1" defaultValue={quantity} required />
                             <button type="button" id="increment-button" className="btn-primary p-3 h-11"
                                 onClick={() => (setQuantity(quantity+1))}
                             >
