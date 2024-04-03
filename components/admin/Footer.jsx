@@ -2,32 +2,87 @@ import Title from '../ui/Title'
 import Input from '../form/Input'
 import { useFormik } from 'formik';
 import { footerSchema } from '../../schema/footer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Footer = () => {
-    const [linkAddress, setLinkAddress] = useState("")
     const [newIcon, setNewIcon] = useState({
-        'linkAddress': 'https://',
-        'icon': 'fa fa-'
+        'icon': 'fa fa-',
+        'link': 'https://'
     })
-    const [icons, setIcons] = useState([
-        {'linkAddress':'https://www.facebook.com', 'icon':'fa-brands fa-facebook-f'},
-        {'linkAddress':'https://www.twitter.com', 'icon':'fa-brands fa-twitter'},
-        {'linkAddress':'https://www.linkedin.com', 'icon':'fa-brands fa-linkedin'}
-    ])
+
+    const [icons, setIcons] = useState([])
+    const [hasdata, setHasData] = useState(false)
+
+    const [footerData, setFooterData] = useState([])
+
     const onSubmit = async (values, actions) => {
-        await new Promise((resolve) => setTimeout(resolve, 4000))
-        actions.resetForm()
+        try {
+            const newData = {
+                ...values,
+                socialMedia: icons,
+                openingHours: { day: values.day, time: values.time }
+            }
+
+            let res = null
+
+            if(hasdata){
+                res = await axios.put(
+                    `${process.env.NEXT_PUBLIC_API_URL}/footer/${footerData._id}`,
+                    newData
+                )
+            }else{
+                res = await axios.post(
+                    `${process.env.NEXT_PUBLIC_API_URL}/footer`,
+                    newData
+                )
+            }
+
+            if(res.status === 200 ){
+                getFooterData()
+                toast.success("Footer saved successfully.")
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
+    useEffect(() => {
+        const getFooterData = async () => {
+            try {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/footer`)
+                setFooterData(res.data[0])
+                setIcons([...(res.data[0]?.socialMedia)])
+                if(res.data[0]){
+                    setHasData(true)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+      getFooterData()
+    }, [])
+
+    const handleIconAdding = () => {
+        setIcons([...icons, newIcon])
+        setNewIcon({
+            'icon': 'fa fa-',
+            'link': 'https://'
+        })
+    }
+    
+
     const {values, errors, touched, handleSubmit, handleChange, handleBlur} = useFormik({
+        enableReinitialize: true,
         initialValues: {
-            location: "",
-            email: "",
-            phoneNumber: "",
-            desc: "",
-            day: "",
-            time: "",
+            location: footerData?.location || "",
+            email: footerData?.email || "",
+            phoneNumber: footerData?.phoneNumber || "",
+            desc: footerData?.desc || "",
+            copyright: footerData?.copyright || "",
+            day: footerData?.openingHours?.day || "",
+            time: footerData?.openingHours?.time || "",
         },
         onSubmit,
         validationSchema: footerSchema,
@@ -89,10 +144,10 @@ const Footer = () => {
             name: "time",
             type: "text",
             placeholder: "Update Time",
-            value: values.day,
+            value: values.time,
             isrequired:true,
-            errorMessage: errors.day,
-            touched: touched.day
+            errorMessage: errors.time,
+            touched: touched.time
         },
     ]
   return (
@@ -108,38 +163,47 @@ const Footer = () => {
                 />
             ))}
         </div>
+        <div className='grid grid-cols-1 gap-4 mt-4'>
+            <Input
+                    key="copyright"
+                    name="copyright"
+                    type= "text"
+                    placeholder= "Copyright"
+                    value = {values.copyright}
+                    isrequired= {true}
+                    errorMessage = {errors.copyright}
+                    touched= {touched.copyright}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                />
+        </div>
         <div className='mt-4 flex justify-between md:items-center md:flex-row flex-col gap-4'>
             <div className='flex items-center gap-4'>
                 <Input
                     placeholder="Link Address"
-                    value={newIcon.linkAddress || "https://"}
-                    onChange={(e) => setNewIcon(prevState => ({ ...prevState, 'linkAddress': e.target.value }))}
+                    value={newIcon.link}
+                    onChange={(e) => setNewIcon(prevState => ({ ...prevState, 'link': e.target.value }))}
                 />
                 <Input
                     placeholder='Icon Name'
-                    value={newIcon.icon || 'fa fa-'}
+                    value={newIcon.icon}
                     onChange={(e) => setNewIcon(prevState => ({ ...prevState, 'icon': e.target.value }))}
                 />
                 <button
                     type='button'
                     className="btn-primary"
-                    onClick={() => (
-                        setIcons([...icons, newIcon]),
-                        setNewIcon({
-                            'linkAddress': 'https://',
-                            'icon': 'fa fa-'
-                        })
-                    )}
+                    onClick={handleIconAdding}
                 >Add</button>
             </div>
             <ul className='flex items-center justify-center gap-4'>
-                { icons.map((icon, index) => (
-                    <li key={index} className='flex items-center'>
+                { icons?.map((icon, index) => (
+                    <li key={index } className='flex items-center'>
                     <i className={`${icon.icon} text-2xl`}></i>
                     <button type='button' className='text-danger' onClick={() => {
-                        setIcons((prev) => prev.filter((item, i) => i !== index))
+                        setIcons((prev) => prev.filter((item) => item !== icon))
+                        // or setIcons((prev) => prev.filter((item, i) => i !== index))
                     }}>
-                        <i className='fa fa-trash text-xl ml-1'></i>
+                        <i className='fa fa-trash text-md ml-1'></i>
                     </button>
                 </li>
                 ))}

@@ -17,7 +17,7 @@ const Input = (props) => {
         <input
           type={type}
           value={value}
-          className={`h-14 w-full border outline-none px-4 peer 
+          className={`h-14 w-full border outline-none rounded-xl px-4 peer 
                 ${type !== "datetime-local" && "pt-2"}
                 ${touched && errorMessage ? "border-danger" : "border-primary"}
                 ${value ? "has-value" : ""}

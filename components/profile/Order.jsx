@@ -23,8 +23,6 @@ const Order = () => {
       getOrders()
     }, [session])
 
-    console.log(orders)
-
   return (
     <div className='md:p-8 flex-1 md:mt-0 mt-5 md:items-center overflow-x-auto'>
         <Title className="text-[40px]">Orders</Title>

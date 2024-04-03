@@ -1,6 +1,28 @@
+import { useEffect, useState } from "react"
 import Title from "../ui/Title"
+import axios from "axios"
 
 const Footer = () => {
+
+  const [footer, setFooter] = useState([])
+  useEffect(() => {
+    const getFooter = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/footer`
+        )
+        setFooter(res.data[0])
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getFooter()
+  }, [])
+  
+  const copyright = (html) => {
+    return <p dangerouslySetInnerHTML={{__html: html}} />;
+  }
+  
   return (
     <div className="footer">
       <div className="container mx-auto">
@@ -9,21 +31,21 @@ const Footer = () => {
             <Title className="text-[30px] mb-4">Contact Us</Title>
             <div className="flex flex-col gap-y-[5px]">
               <div className="">
-                <a href="">
+                <a href={footer?.location} target="_blank" rel="noreferrer">
                   <i className="fa fa-map-marker-alt"></i>
                   <span className="inline-block ml-2">Location</span>
                 </a>
               </div>
               <div className="">
-                <a href="">
+                <a href={`tel:${footer?.phoneNumber}`}>
                   <i className="fa fa-phone"></i>
-                  <span className="inline-block ml-2">Call +01 1234567890</span>
+                  <span className="inline-block ml-2">Call +{footer?.phoneNumber}</span>
                 </a>
               </div>
               <div className="">
-                <a href="">
+                <a href={`mailto:${footer?.email}`}>
                   <i className="fa fa-envelope"></i>
-                  <span className="inline-block ml-2">demo@gmail.com</span>
+                  <span className="inline-block ml-2">{footer?.email}</span>
                 </a>
               </div>
             </div>
@@ -32,23 +54,13 @@ const Footer = () => {
             <Title className="text-[30px] mb-4">Feane</Title>
             <div className="flex flex-col gap-y-[5px]">
               <div className="">
-                <p>Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with</p>
+                <p>{footer?.desc}</p>
                 <div className="footer-social">
-                  <a href="">
-                    <i className="fab  fa-facebook-f"></i>
-                  </a>
-                  <a href="">
-                    <i className="fab fa-twitter"></i>
-                  </a>
-                  <a href="">
-                    <i className="fab fa-linkedin"></i>
-                  </a>
-                  <a href="">
-                    <i className="fab fa-instagram"></i>
-                  </a>
-                  <a href="">
-                    <i className="fab fa-pinterest"></i>
-                  </a>
+                  {footer?.socialMedia?.map((item) => (
+                    <a key={item?._id} href={item?.link} target="_blank" rel="noreferrer">
+                      <i className={item?.icon}></i>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
@@ -57,20 +69,17 @@ const Footer = () => {
             <Title className="text-[30px] mb-4">Opening Hours</Title>
             <div className="flex flex-col gap-y-[5px]">
               <div className="">
-                <span>Everyday</span>
+                <span>{footer?.openingHours?.day}</span>
               </div>
               <div className="">
-                  <span>10.00 Am - 10.00 Pm</span>
+                  <span>{footer?.openingHours?.time}</span>
               </div>
             </div>
           </div>
           
         </div>
         <div className="text-center mt-6">
-          <p>
-            © <span id="displayYear">2023</span> All Rights Reserved By 
-            <a href=""> Free Html Templates</a>
-          </p>
+          {copyright(footer?.copyright)}
         </div>
       </div>
     </div>

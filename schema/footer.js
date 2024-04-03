@@ -12,6 +12,7 @@ export const footerSchema =
             .required("Phone number is required."),
         desc: Yup.string()
             .required("Description is required."),
+        copyright: Yup.string(),
         day: Yup.string()
             .required("Day is required."),
         time: Yup.string()
