@@ -125,7 +125,7 @@ const Index = ({ food }) => {
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h16"/>
                                 </svg>
                             </button>
-                            <input type="text" className="bg-gray-50 border-x-0 border-gray-300 h-11 text-sm focus:ring-blue-500 focus:border-blue-500 block py-2.5 w-5 text-center font-bold" placeholder="1" defaultValue={quantity} required />
+                            <input type="text" className="bg-gray-50 border-x-0 border-gray-300 h-11 text-sm focus:ring-blue-500 focus:border-blue-500 block py-2.5 w-5 text-center font-bold" placeholder="1" value={quantity} required />
                             <button type="button" id="increment-button" className="btn-primary p-3 h-11"
                                 onClick={() => (setQuantity(quantity+1))}
                             >
