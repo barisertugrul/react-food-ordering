@@ -14,7 +14,7 @@ const Carousel = () => {
         autoplaySpeed: 5000,
         appenDots: (dots) => (
             <div>
-                <ul>{dots}</ul>
+                <ul className="container mx-auto w-full text-start">{dots}</ul>
             </div>
         ),
         customPaging:(i) => (
@@ -38,8 +38,8 @@ const Carousel = () => {
         </div>
         <Slider {...settings}>
             
-                <div className="sm:ml-[5rem] text-white mt-48 !flex flex-col items-start gap-y-10 sm:w-full">
-                    <Title className="text-[3.5rem]">Fast Food Restaurant</Title>
+                <div className="sm:ml-[5rem] text-white mt-48 !flex flex-col items-start gap-y-8 sm:w-full">
+                    <Title className="text-5xl">Fast Food Restaurant</Title>
                     <p className="text-sm sm:w-96 w-full">
                         Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente
                         ad mollitia laborum quam quisquam esse error unde. Tempora ex
@@ -48,8 +48,8 @@ const Carousel = () => {
                     </p>
                     <button className="btn-primary">Order Now!</button>
                 </div>
-                <div className="relative sm:ml-[5rem] text-white top-48 !flex flex-col items-start gap-y-10 sm:w-full">
-                    <Title className="text-[3.5rem]">Fast Food Restaurant</Title>
+                <div className="relative sm:ml-[5rem] text-white top-48 !flex flex-col items-start gap-y-8 sm:w-full">
+                    <Title className="text-5xl">Good Pizza Burger</Title>
                     <p className="text-sm sm:w-96 w-full">
                         Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente
                         ad mollitia laborum quam quisquam esse error unde. Tempora ex

@@ -48,15 +48,15 @@ const Profile = ({ user }) => {
                     <i className='fa fa-home'></i>
                     <button className='ml-2'>Account</button>
                 </li>
-                <li className={`flex flex-row profile-tab-link ${tabs === 1 && "bg-primary text-white"}`} onClick={() => setTabs(1)}>
+                <li className={`flex flex-row profile-tab-link border-t-0 ${tabs === 1 && "bg-primary text-white"}`} onClick={() => setTabs(1)}>
                     <FaKey className='mt-1' /> {/* Farklı bir gösterim örneği için */}
                     <button className='ml-2'>Password</button>
                 </li>
-                <li className={`profile-tab-link ${tabs === 2 && "bg-primary text-white"}`} onClick={() => setTabs(2)}>
+                <li className={`profile-tab-link border-t-0 ${tabs === 2 && "bg-primary text-white"}`} onClick={() => setTabs(2)}>
                     <i className='fa fa-shopping-bag'></i>
                     <button className='ml-2'>Orders</button>
                 </li>
-                <li className={`profile-tab-link`} onClick={handleSignOut}>
+                <li className={`profile-tab-link border-t-0`} onClick={handleSignOut}>
                     <i className='fa fa-sign-out'></i>
                     <button className='ml-2'>Logout</button>
                 </li>

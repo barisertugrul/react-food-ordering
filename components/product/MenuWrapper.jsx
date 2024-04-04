@@ -5,6 +5,7 @@ import MenuItem from './MenuItem'
 const MenuWrapper = ({ categoryList, productList }) => {
   const [active, setActive] = useState(null)
   const [filteredProduct, setFilteredProduct] = useState([])
+  const [productLimit, setProductLimit] = useState(3)
 
   useEffect(() => {
     if(active === null){
@@ -28,7 +29,10 @@ const MenuWrapper = ({ categoryList, productList }) => {
                   className={`category-filter-button ${
                     active === null && "active"
                   }`}
-                  onClick={() => setActive(null)}
+                  onClick={() => {
+                    setActive(null)
+                    setProductLimit(3)
+                  }}
                 >All</button>
                 {categoryList &&
                   categoryList.map((category, index) => (
@@ -37,7 +41,10 @@ const MenuWrapper = ({ categoryList, productList }) => {
                         index === active && "active"
                       }`}
                       key={category._id}
-                      onClick={() => setActive(index)}
+                      onClick={() => {
+                        setActive(index)
+                        setProductLimit(3)
+                      }}
                     >{category.title}</button>
                   ))}
                 
@@ -46,8 +53,13 @@ const MenuWrapper = ({ categoryList, productList }) => {
         
         <div className='mt-8 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4'>
             {filteredProduct.length > 0 &&
-              filteredProduct.map((product) => <MenuItem key={product._id} product={product} />)
+              filteredProduct
+                .slice(0, productLimit)
+                .map((product) => <MenuItem key={product._id} product={product} />)
             }
+        </div>
+        <div className='flex items-center justify-center w-full mt-8'>
+          <button className="btn-primary" onClick = {() => setProductLimit(productLimit + 3)}>View More</button>
         </div>
     </div>
   )

@@ -21,12 +21,12 @@ const Account = ({user}) => {
     const {values, errors, touched, handleSubmit, handleChange, handleBlur} = useFormik({
         enableReinitialize: true,
         initialValues: {
-            fullName: user?.fullName,
-            phoneNumber: user?.phoneNumber,
-            email: user?.email,
-            address: user?.address,
-            job: user?.job,
-            bio: user?.bio,
+            fullName: user?.fullName || "",
+            phoneNumber: user?.phoneNumber || "",
+            email: user?.email || "",
+            address: user?.address || "",
+            job: user?.job || "",
+            bio: user?.bio || "",
         },
         onSubmit,
         validationSchema: profileSchema,

@@ -41,19 +41,19 @@ const Profile = () => {
                     <i className='fa fa-cutlery'></i>
                     <button className='ml-2'>Products</button>
                 </li>
-                <li className={`profile-tab-link ${tabs === 1 && "bg-primary text-white"}`} onClick={() => setTabs(1)}>
+                <li className={`profile-tab-link border-t-0 ${tabs === 1 && "bg-primary text-white"}`} onClick={() => setTabs(1)}>
                     <i className='fa fa-list-alt'></i>
                     <button className='ml-2'>Categories</button>
                 </li>
-                <li className={`profile-tab-link ${tabs === 2 && "bg-primary text-white"}`} onClick={() => setTabs(2)}>
+                <li className={`profile-tab-link border-t-0 ${tabs === 2 && "bg-primary text-white"}`} onClick={() => setTabs(2)}>
                     <i className='fa fa-shopping-bag'></i>
                     <button className='ml-2'>Orders</button>
                 </li>
-                <li className={`profile-tab-link ${tabs === 3 && "bg-primary text-white"}`} onClick={() => setTabs(3)}>
+                <li className={`profile-tab-link border-t-0 ${tabs === 3 && "bg-primary text-white"}`} onClick={() => setTabs(3)}>
                     <i className='fa fa-window-minimize'></i>
                     <button className='ml-2'>Footer</button>
                 </li>
-                <li className={`profile-tab-link`} onClick={logout}>
+                <li className={`profile-tab-link border-t-0`} onClick={logout}>
                     <i className='fa fa-sign-out'></i>
                     <button className='ml-2'>Logout</button>
                 </li>

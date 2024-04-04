@@ -13,7 +13,10 @@ const Index = ({ food }) => {
     const [quantity, setQuantity] = useState(1)
     const [extraItems, setExtraItems] = useState(food?.extras)
     const [extras, setExtras] = useState([])
-    //const cart = useSelector((state) => state.cart)
+    const cart = useSelector((state) => state.cart)
+
+    // If you want a product to be added to the cart once
+    const isInCart = cart.products.find((item) => item._id === food._id)
 
     const dispatch = useDispatch()
 
@@ -134,7 +137,11 @@ const Index = ({ food }) => {
                     </div>
                 </div>
                 <div className='flex md:justify-end justify-center items-end md:mt-0 mt-5'>
-                    <button className='btn-primary mt-5 h-12' onClick={handleClick}>Add to Cart</button>
+                    <button
+                        className='btn-primary mt-5 h-12'
+                        onClick={handleClick}
+                        //disabled={isInCart}  // If you want a product to be added to the cart once
+                    >Add to Cart</button>
                 </div>
             </div>
             

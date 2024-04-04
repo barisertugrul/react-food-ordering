@@ -28,16 +28,17 @@ const Login = () => {
     const getUser = async () => {
       try {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`);
+        const user = res.data?.find((user) => user.email === session?.user?.email)
         setCurrentUser(
-          res.data?.find((user) => user.email === session?.user?.email)
+          user
         );
-        session && currentUser && push("/profile/" + currentUser?._id);
+        session && user && push("/profile/" + user?._id);
       } catch (err) {
         console.log(err);
       }
     };
     getUser();
-  }, [session, push, currentUser]);
+  }, [session, push]);
   
 
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =

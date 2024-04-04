@@ -13,8 +13,8 @@ const Header = () => {
     const cart = useSelector((state) => state.cart)
     const router = useRouter()
   return (
-    <div className={`h-[5.5rem] z-40 relative ${
-        router.asPath === "/" ? "bg-transparent" : "bg-secondary"
+    <div className={`h-[5.5rem] z-50 relative w-full ${
+        router.asPath === "/" ? "bg-transparent" : "bg-secondary !fixed"
     }`}>
         <div className="container mx-auto text-white flex justify-between items-center h-full sm:w-10/12">
             <Logo/>
@@ -25,18 +25,18 @@ const Header = () => {
             {
                 // Hocanın çözümü
             }
-            <nav className={`sm:static absolute top-0 left-0 sm:w-auto sm:h-auto w-full h-screen sm:text-white text-black sm:bg-transparent bg-white sm:flex hidden ${isMenuModal === true && '!grid place-content-center'}`}>
+            <nav className={`sm:static absolute top-0 left-0 sm:w-auto sm:h-auto w-full h-screen sm:text-white text-black sm:bg-transparent bg-white sm:flex hidden z-50 ${isMenuModal === true && '!grid place-content-center'}`}>
                 <ul className="flex gap-x-2 sm:flex-row flex-col items-center">
-                    <li className="link-item header-nav-link">
+                    <li className={`link-item header-nav-link ${router.asPath === "/" && "text-primary"}`} onClick={() => setIsMenuModal(false)} >
                         <Link href="/">Home</Link>
                     </li>
-                    <li className="link-item header-nav-link">
+                    <li className={`link-item header-nav-link ${router.asPath === "/menu" && "text-primary"}`} onClick={() => setIsMenuModal(false)} >
                         <Link href="/menu">Menu</Link>
                     </li>
-                    <li className="link-item header-nav-link">
+                    <li className={`link-item header-nav-link ${router.asPath === "/about" && "text-primary"}`} onClick={() => setIsMenuModal(false)} >
                         <Link href="/about">About</Link>
                     </li>
-                    <li className="link-item header-nav-link">
+                    <li className={`link-item header-nav-link ${router.asPath === "/reservation" && "text-primary"}`} onClick={() => setIsMenuModal(false)} >
                         <Link href="/reservation">Book Table</Link>
                     </li>
                 </ul>
@@ -48,14 +48,19 @@ const Header = () => {
             </nav>
             <div className="flex gap-x-4 items-center">
                 <Link href="/auth/login">
-                    <span><FaUserAlt className="link-item"/></span>
+                    <span><FaUserAlt className={`link-item ${
+                        (
+                            router.asPath.includes("profile") ||
+                            router.asPath.includes("admin") ||
+                            router.asPath.includes("auth")
+                        ) && "text-primary"}`}/></span>
                 </Link>
                 <Link href="/cart">
                     <span className="relative">
-                        <FaShoppingCart className="link-item" />
-                        <span className="w-4 h-4 text-xs grid place-content-center rounded-full
-                         bg-primary absolute -top-3 -right-3 text-black
-                         font-bold">
+                        <FaShoppingCart className={`link-item ${router.asPath === "/cart" && "text-primary"}`} />
+                        <span className="px-[5px] text-[10px] rounded-full
+                         bg-primary absolute -top-2.5 -right-3 text-black
+                         inline-flex items-center justify-center font-bold">
                             {cart.products.length}
                         </span>
                     </span>
