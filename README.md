@@ -1,8 +1,16 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+Demo: [https://react-food-ordering-six.vercel.app/](https://react-food-ordering-six.vercel.app/)
+
 ## Getting Started
 
-First, run the development server:
+First,
+You must open a MongoDB ([https://www.mongodb.com/](https://www.mongodb.com/)) account for the project and add a database.
+You should also rename the .env.example file to .env and fill in the necessary information in its content.
+
+
+Second run the development server:
 
 ```bash
 npm run dev
