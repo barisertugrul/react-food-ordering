@@ -6,7 +6,8 @@ Demo: [https://react-food-ordering-six.vercel.app/](https://react-food-ordering-
 ## Getting Started
 
 First,
-You must open a MongoDB ([https://www.mongodb.com/](https://www.mongodb.com/)) account for the project and add a database.
+You must create a MongoDB ([https://www.mongodb.com/](https://www.mongodb.com/)) account for the project and add a database.
+Cretae a Cloudinary Account ([https://cloudinary.com/](https://cloudinary.com/))
 You should also rename the .env.example file to .env and fill in the necessary information in its content.
 
 
@@ -44,3 +45,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## What more should be added?
+- Campaign API
+- Reservation - Booking System
+- Customer Comment System (Testimonials)
+- Order Details (Products List in Order)
+- Socket IO System
