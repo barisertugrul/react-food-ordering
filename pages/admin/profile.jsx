@@ -51,7 +51,7 @@ const Profile = () => {
                     <button className='ml-2'>Orders</button>
                 </li>
                 <li className={`profile-tab-link border-t-0 ${tabs === 3 && "bg-primary text-white"}`} onClick={() => setTabs(3)}>
-                    <i className='fa fa-ticket'></i>
+                    <i className="fa-solid fa-calendar-days"></i>
                     <button className='ml-2'>Reservations</button>
                 </li>
                 <li className={`profile-tab-link border-t-0 ${tabs === 4 && "bg-primary text-white"}`} onClick={() => setTabs(4)}>

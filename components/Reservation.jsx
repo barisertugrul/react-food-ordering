@@ -49,7 +49,7 @@ const Reservation = () => {
 
     const {values, errors, touched, handleSubmit, handleChange, handleBlur} = useFormik({
         initialValues: {
-            userId: session?.user?._id || "",
+            userId: userId || "",
             fullName: "",
             phoneNumber: "",
             email: "",

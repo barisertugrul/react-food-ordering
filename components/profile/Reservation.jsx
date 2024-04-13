@@ -2,15 +2,21 @@ import { useEffect, useState } from 'react'
 import Title from '../ui/Title'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { useSession } from 'next-auth/react'
 
-const Reservations = () => {
+const Reservation = ({ user }) => {
+    
     const [reservations, setReservations] = useState([])
     const statusList = ["Waiting for Approval", "Approved", "Rejected", "Cancelled"]
-
     
     const getReservations = async () => {
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reservations`)
+                
+            const params = {
+                userId: user?._id
+            }
+
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reservations`,{params})
             setReservations(res.data)
         } catch (error) {
             console.log(error)
@@ -21,44 +27,15 @@ const Reservations = () => {
       getReservations()
     }, [])
 
-    const handleStatus = async (id, status) => {
-        
-        const item = reservations.find((reservation) => reservation._id === id)
-
-        if(status === 1 && (item.tableNo === "" || item.tableNo === null)){
-            toast.error("You must include at least one table number before confirming the booking. (You can write more than one table number by separating them with a comma.)")
-        }else{
-            try {
-                const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/reservations/${id}`,
-                {
-                    status
-                })
-                if(res.status === 200){
-                    setReservations([res.data, ...reservations.filter((reservation) => reservation._id !== id)])
-                    if(status === 1){
-                        toast.success("Booking confirmation has been made.")
-                    }else{
-                        toast.warning("Booking rejected!")
-                    }
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        }
-    }
-
-    const handleSetTable = async (id, value) => {
-        
-        const item = reservations.find((reservation) => reservation._id === id)
-
+    const handleStatus = async (id) => {
         try {
             const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/reservations/${id}`,
             {
-                tableNo: value
+                status: 3
             })
             if(res.status === 200){
                 setReservations([res.data, ...reservations.filter((reservation) => reservation._id !== id)])
-                toast.success("The table number has been updated successfully.)")
+                toast.warning("Booking cancelled!")
             }
         } catch (error) {
             console.log(error)
@@ -92,31 +69,22 @@ const Reservations = () => {
                                         <span>{reservation?._id.substring(0,8)}...</span>
                                     </td>
                                     <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>
-                                        <span>{reservation?.fullName}</span>
+                                        <span>{reservation?.userId}</span>
                                     </td>
                                     <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>{reservation?.phoneNumber}</td>
                                     <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>{reservation?.email}</td>
                                     <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>{reservation?.persons}</td>
                                     <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>{reservation?.date}</td>
-                                    <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>
-                                        <input type="text" className="bg-transparent border border-double border-gray-900 h-11 text-sm focus:ring-blue-500 focus:border-blue-500 block py-2.5 w-10 text-center font-bold" onChange={(e) => handleSetTable(reservation._id, e.target.value)} value={reservation?.tableNo} />
-                                    </td>
+                                    <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>{reservation?.tableNo}</td>
                                     <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>{statusList[reservation?.status]}</td>
                                     <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>
                                         <button
-                                            className='btn-primary !bg-success'
-                                            onClick={() => handleStatus(reservation?._id, 1)}
-                                            title='Approve'
-                                            disabled = {(reservation.tableNo === null || reservation.tableNo === '')}
-                                        >
-                                            <i className="fa fa-check"></i>
-                                        </button>
-                                        <button
                                             className='btn-primary !bg-red-600 ml-2'
-                                            onClick={() => handleStatus(reservation?._id, 2)}
-                                            title='Reject'
+                                            onClick={() => handleStatus(reservation?._id)}
+                                            title='Cancel'
+                                            disabled={reservation.status === 3}
                                         >
-                                            <i className="fa fa-times"></i>
+                                            <i className="fa fa-times mr-2"></i>Cancel Book
                                         </button>
                                     </td>
                                 </tr>
@@ -129,4 +97,4 @@ const Reservations = () => {
   )
 }
 
-export default Reservations
+export default Reservation

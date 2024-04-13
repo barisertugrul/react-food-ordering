@@ -7,6 +7,7 @@ import Order from '../../components/profile/Order'
 import { getSession, signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import Reservation from '../../components/profile/Reservation'
 
 const Profile = ({ user }) => {
     const { data: session } = useSession()
@@ -56,6 +57,10 @@ const Profile = ({ user }) => {
                     <i className='fa fa-shopping-bag'></i>
                     <button className='ml-2'>Orders</button>
                 </li>
+                <li className={`profile-tab-link border-t-0 ${tabs === 3 && "bg-primary text-white"}`} onClick={() => setTabs(3)}>
+                    <i className='fa fa-calendar-check'></i>
+                    <button className='ml-2'>My Bookings</button>
+                </li>
                 <li className={`profile-tab-link border-t-0`} onClick={handleSignOut}>
                     <i className='fa fa-sign-out'></i>
                     <button className='ml-2'>Logout</button>
@@ -65,6 +70,7 @@ const Profile = ({ user }) => {
         { tabs === 0 && <Account user={user} />  }
         { tabs === 1 && <Password user={user} />  }
         { tabs === 2 && <Order /> }
+        { tabs === 3 && <Reservation user={user} /> }
     </div>
   )
 }

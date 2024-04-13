@@ -4,11 +4,11 @@ import Reservation from "../../../models/Reservation"
 const handler = async(req, res) => {
     await dbConnect()
 
-    const { method } = req
+    const { method, query } = req
 
     if(method === "GET"){
         try {
-            const reservation = await Reservation.find()
+            const reservation = await Reservation.find({...query})
             res.status(200).json(reservation)
         } catch (error) {
             console.log(error)
