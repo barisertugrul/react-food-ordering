@@ -7,16 +7,16 @@ import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 
 const Index = ({ food }) => {
-    const [prices, setPrices] = useState([...food?.prices])
+    const prices = [...food?.prices] || []
     const [price, setPrice] = useState(prices[0])
     const [size, setSize] = useState(0)
     const [quantity, setQuantity] = useState(1)
-    const [extraItems, setExtraItems] = useState(food?.extras)
+    const extraItems = [...food?.extras] || []
     const [extras, setExtras] = useState([])
     const cart = useSelector((state) => state.cart)
 
     // If you want a product to be added to the cart once
-    const isInCart = cart.products.find((item) => item._id === food._id)
+    // const isInCart = cart.products.find((item) => item._id === food._id)
 
     const dispatch = useDispatch()
 
@@ -47,6 +47,7 @@ const Index = ({ food }) => {
             {
                 ...food,
                 cartUUID: uuidv4(),
+                size,
                 extras,
                 price,
                 quantity
@@ -94,7 +95,7 @@ const Index = ({ food }) => {
                     </div>
                 </div>
             </div>}
-            <div className='mt-5 md:justify-start justify-center'>
+            {extraItems.length > 0 && <div className='mt-5 md:justify-start justify-center'>
                 <h4 className='text-xl font-bold'> Chose additional ingredients</h4>
                 <div className='flex gap-x-4 mt-4 md:justify-start justify-center'>
                   {
@@ -107,7 +108,7 @@ const Index = ({ food }) => {
                     ))
                   }
                 </div>
-            </div>
+            </div>}
             <div className='md:flex flex-1 gap-x-4 mt-5 md:justify-between justify-center'>
                 <div className="flex gap-x-4 mt-4 md:justify-start justify-center">
                     <div className='flex-1 md-justify-start justify-center'>
@@ -125,7 +126,7 @@ const Index = ({ food }) => {
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h16"/>
                                 </svg>
                             </button>
-                            <input type="text" className="bg-gray-50 border-x-0 border-gray-300 h-11 text-sm focus:ring-blue-500 focus:border-blue-500 block py-2.5 w-5 text-center font-bold" placeholder="1" value={quantity} required />
+                            <input type="text" className="bg-gray-50 border-x-0 border-gray-300 h-11 text-sm focus:ring-blue-500 focus:border-blue-500 block py-2.5 w-5 text-center font-bold" placeholder="1" onChange={(e) => setQuantity(e.target.value)} value={quantity} required />
                             <button type="button" id="increment-button" className="btn-primary p-3 h-11"
                                 onClick={() => (setQuantity(quantity+1))}
                             >

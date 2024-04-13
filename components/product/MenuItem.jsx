@@ -34,7 +34,9 @@ const MenuItem = ({ product }) => {
             </Link>
         </div>
         <div className="p-[25px] text-white">
-            <h4 className="text-xl font-semibold mb-2">{product.title}</h4>
+            <Link className="cursor-pointer" href={`/product/${product._id}`}>
+                <h4 className="text-xl font-semibold mb-2">{product.title}</h4>
+            </Link>
             <p className="text-[15px] mb-4">
                 {product.desc}
             </p>

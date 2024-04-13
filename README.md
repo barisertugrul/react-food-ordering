@@ -1,3 +1,5 @@
+This project was developed during the [React (Next.js) ile Full Stack Yemek Sipariş Projesi](https://www.udemy.com/course/react-nextjs-ile-full-stack-yemek-siparis-projesi).
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 
@@ -46,9 +48,26 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Technology or libraries used:
+- React
+- Next.js
+- Tailwind CSS
+- Redux
+- Redux-Toolkit
+- Next-Auth
+- Formic
+- MongoDB
+- Mongoose
+
+## Additions made after the course:
+- Order Details System
+- Reservation - Booking System (Requesting and management by admin.)
+
 ## What more should be added?
-- Campaign API
-- Reservation - Booking System
+- Campaign System
+- Product Edit / Update System
 - Customer Comment System (Testimonials)
-- Order Details (Products List in Order)
-- Socket IO System
+- Socket IO System (for order status changing)
+- Payment System
+- Multi-language support
+- Discounts, coupons management

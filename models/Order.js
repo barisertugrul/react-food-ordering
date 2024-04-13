@@ -11,6 +11,14 @@ const OrderSchema = new mongoose.Schema(
             required: true,
             maxlength: 200,
         },
+        subTotal: {
+            type: Number,
+            required: true,
+        },
+        discounts: {
+            type: Number,
+            required: true,
+        },
         total: {
             type: Number,
             required: true,

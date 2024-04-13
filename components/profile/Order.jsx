@@ -8,7 +8,7 @@ const Order = () => {
     
     const {data: session} = useSession()
     const [orders, setOrders] = useState([])
-    const statusList = ["Payment", "Preparing", "On the way", "Delivered"]
+    const statusList = ["Pending Payment", "Preparing", "On the way", "Delivered"]
 
     useEffect(() => {
       const getOrders = async () => {

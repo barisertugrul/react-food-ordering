@@ -2,14 +2,54 @@ import { useFormik } from 'formik';
 import Input from './form/Input'
 import Title from './ui/Title'
 import { reservationSchema } from '../schema/reservation';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 
 const Reservation = () => {
+    
+    const {data:session} = useSession()
+    const [userId, setUserId] = useState("")
+
+    useEffect(() => {
+        const getUser = async () => {
+            try {
+                
+                const params = {
+                    email: session?.user?.email
+                }
+
+                // const users = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`);
+                // const user = res.data?.find((user) => user.email === session?.user?.email)
+                const user = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`,{params});
+                setUserId(user.data[0]._id)
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        getUser();
+    }, [session])
+    
+
     const onSubmit = async (values, actions) => {
-        await new Promise((resolve) => setTimeout(resolve, 400))
-        actions.resetForm()
-    }
+        try {
+            values = {...values, userId}
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/reservations`, {...values})
+            if (res.status === 201){
+                actions.resetForm();
+                toast.success("Your reservation request has been submitted successfully. You will be notified in case of a negative situation.")
+            }
+            
+        } catch (err) {
+            console.log(err);
+            toast.error("A problem has occured. Please try again later.")
+        }
+    };
+
     const {values, errors, touched, handleSubmit, handleChange, handleBlur} = useFormik({
         initialValues: {
+            userId: session?.user?._id || "",
             fullName: "",
             phoneNumber: "",
             email: "",
@@ -71,6 +111,7 @@ const Reservation = () => {
             touched: touched.date
         },
     ]
+
   return (
     <div className='container mx-auto py-12 '  >
         <Title className="text-[40px] mb-10">Book A Table</Title>

@@ -1,15 +1,15 @@
 import dbConnect from "../../../util/dbConnect"
-import User from "../../../models/User"
+import OrderDetail from "../../../models/OrderDetail"
 
 const handler = async(req, res) => {
     await dbConnect()
 
-    const { method, query } = req
+    const { method, query: { orderId } } = req
 
     if(method === "GET"){
         try {
-            const users = await User.find({...query})
-            res.status(200).json(users)
+            const orderDetails = await OrderDetail.find({"orderId":orderId})
+            res.status(200).json(orderDetails)
         } catch (error) {
             console.log(error)
         }
@@ -17,8 +17,8 @@ const handler = async(req, res) => {
 
     if(method === "POST"){
         try {
-            const newUser = await User.create(req.body)
-            res.status(200).json(newUser)
+            const newOrderDetail = await OrderDetail.create(req.body)
+            res.status(201).json(newOrderDetail)
         } catch (error) {
             console.log(error)
         }

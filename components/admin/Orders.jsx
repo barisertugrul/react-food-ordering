@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import Title from '../ui/Title'
 import axios from 'axios'
+import Link from 'next/link'
 
 const Orders = () => {
     const [orders, setOrders] = useState([])
     const method = ["Cash", "Credit Card"]
-    const statusList = ["Payment", "Preparing", "On the way", "Delivered"]
+    const statusList = ["Pending Payment", "Preparing", "On the way", "Delivered"]
 
     useEffect(() => {
       const getOrders = async () => {
@@ -20,10 +21,11 @@ const Orders = () => {
       getOrders()
     }, [])
 
-    const handleStatus = async (id) => {
+    const handleStatus = async (event, id) => {
+        event.preventDefault()
         const item = orders.find((order) => order._id === id)
         const currentStatus = item.status
-        const newStatus = currentStatus < 3 ? currentStatus + 1 : 3
+        const newStatus = (currentStatus + 1) % 4
         try {
             const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/orders/${id}`,
             {
@@ -54,24 +56,27 @@ const Orders = () => {
                         {orders.length > 0 && orders
                             .sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
                             .map((order) => (
-                                <tr key={order?._id} className='border-b bg-secondary border-gray-700 hover:bg-primary hover:border-white transition-all cursor-pointer'>
-                                    <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white gap-x-1'>
-                                        <span>{order?._id.substring(0,8)}...</span>
-                                    </td>
-                                    <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>
-                                        <span>{order?.customer?.fullName}</span>
-                                    </td>
-                                    <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>${order?.total}</td>
-                                    <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>{method[order?.method]}</td>
-                                    <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>{statusList[order?.status]}</td>
-                                    <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>
-                                        <button
-                                            className='btn-primary !bg-success'
-                                            onClick={() => handleStatus(order?._id)}
-                                            disabled={order?.status > 2}
-                                        >Next Stage</button>
-                                    </td>
-                                </tr>
+                                <Link key={order?._id} href={`/admin/order/${order?._id}`}>
+                                    <tr className='border-b bg-secondary border-gray-700 hover:bg-primary hover:border-white transition-all cursor-pointer'>
+                                        <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white gap-x-1'>
+                                            <span>{order?._id.substring(0,8)}...</span>
+                                        </td>
+                                        <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>
+                                            <span>{order?.customer?.fullName}</span>
+                                        </td>
+                                        <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>${order?.total}</td>
+                                        <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>{method[order?.method]}</td>
+                                        <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>{statusList[order?.status]}</td>
+                                        <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-white'>
+                                            <button
+                                                className='btn-primary !bg-success'
+                                                onClick={(e) => handleStatus(e, order?._id)}
+                                                //disabled={order?.status > 2}
+                                            >Next Stage</button>
+                                        </td>
+                                    </tr>
+                                </Link>
+                                
                             ))
                         }
                     </tbody>

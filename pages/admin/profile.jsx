@@ -8,6 +8,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
 import AddProduct from '../../components/admin/AddProduct'
+import Reservations from '../../components/admin/Reservations'
 
 const Profile = () => {
     const [tabs, setTabs] = useState(0)
@@ -50,6 +51,10 @@ const Profile = () => {
                     <button className='ml-2'>Orders</button>
                 </li>
                 <li className={`profile-tab-link border-t-0 ${tabs === 3 && "bg-primary text-white"}`} onClick={() => setTabs(3)}>
+                    <i className='fa fa-ticket'></i>
+                    <button className='ml-2'>Reservations</button>
+                </li>
+                <li className={`profile-tab-link border-t-0 ${tabs === 4 && "bg-primary text-white"}`} onClick={() => setTabs(4)}>
                     <i className='fa fa-window-minimize'></i>
                     <button className='ml-2'>Footer</button>
                 </li>
@@ -62,7 +67,8 @@ const Profile = () => {
         { tabs === 0 && <Products isProductAdded={isProductAdded} />  }
         { tabs === 1 && <Categories />  }
         { tabs === 2 && <Orders /> }
-        { tabs === 3 && <Footer /> }
+        { tabs === 3 && <Reservations /> }
+        { tabs === 4 && <Footer /> }
         {isAddProductModal && <AddProduct setIsAddProductModal={setIsAddProductModal} setIsProductAdded={setIsProductAdded} />}
         {tabs === 0 && <button
             className='fixed btn-primary w-12 h-12 !p-0 bottom-6 right-6 text-4xl'

@@ -58,11 +58,11 @@ const Header = () => {
                 <Link href="/cart">
                     <span className="relative">
                         <FaShoppingCart className={`link-item ${router.asPath === "/cart" && "text-primary"}`} />
-                        <span className="px-[5px] text-[10px] rounded-full
+                        {cart.products.length > 0 && <span className="px-[5px] text-[10px] rounded-full
                          bg-primary absolute -top-2.5 -right-3 text-black
                          inline-flex items-center justify-center font-bold">
                             {cart.products.length}
-                        </span>
+                        </span>}
                     </span>
                     
                 </Link>
@@ -74,7 +74,6 @@ const Header = () => {
                 </a>
                 <button className="link-item max-sm:block hidden whitespace-nowrap" onClick={() => {
                     setIsMenuModal(!isMenuModal)
-                    console.log(isMenuModal? "True":"False")
                     }}>
                     <GiHamburgerMenu className="text-2xl" />
                 </button>

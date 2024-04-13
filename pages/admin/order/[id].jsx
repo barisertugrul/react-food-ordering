@@ -1,14 +1,28 @@
 import axios from 'axios'
 import Image from 'next/image'
-import OrderDetails from '../../components/order/OrderDetails'
-
+import OrderDetails from '../../../components/order/OrderDetails'
+import { useState } from 'react'
 const Order = ({order}) => {
 
-    const status = order?.status
+    const [status, setStatus] = useState(order?.status)
 
     const statusClass = (index) => {
         if(index - status === 0) return "animate-pulse"
         else return ""
+    }
+
+    
+
+    const handleStatus = async (statusId) => {
+        try {
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/orders/${order._id}`,
+            {
+                status: statusId
+            })
+            setStatus(statusId)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
   return (
@@ -39,26 +53,26 @@ const Order = ({order}) => {
                 </table>
             </div>
             <div className='flex justify-between w-full p-10 bg-primary mt-6'>
-                <div className={`relative flex flex-col ${statusClass(0)}`}>
+                <div className={`relative flex flex-col cursor-pointer ${statusClass(0)}`} onClick={() => handleStatus(0)} title='Click to set the order status to pending payment.'>
                     <Image src="/images/paid.png" alt='' width={40} height={40} objectFit='contain' />
                     <span>Pending Payment</span>
                 </div>
-                <div className={`relative flex flex-col ${statusClass(1)}`}>
+                <div className={`relative flex flex-col cursor-pointer ${statusClass(1)}`} onClick={() => handleStatus(1)} title='Click to set the order status to preparing.'>
                     <Image src="/images/bake.png" alt='' width={40} height={40} objectFit='contain' />
                     <span>Preparing</span>
                 </div>
-                <div className={`relative flex flex-col ${statusClass(2)}`}>
+                <div className={`relative flex flex-col cursor-pointer ${statusClass(2)}`} onClick={() => handleStatus(2)} title='Click to set the order status to on the way.'>
                     <Image src="/images/bike.png" alt='' width={40} height={40} objectFit='contain' />
                     <span>On the way</span>
                 </div>
-                <div className={`relative flex flex-col ${statusClass(3)}`}>
+                <div className={`relative flex flex-col cursor-pointer ${statusClass(3)}`} onClick={() => handleStatus(3)} title='Click to set the order status to complete.'>
                     <Image src="/images/delivered.png" alt='' width={40} height={40} objectFit='contain' />
                     <span>Delivered</span>
                 </div>
             </div>
 
             <OrderDetails order={{...order}} />
-
+            
         </div>
     </div>
     

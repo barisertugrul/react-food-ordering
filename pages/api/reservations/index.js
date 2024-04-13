@@ -1,15 +1,15 @@
 import dbConnect from "../../../util/dbConnect"
-import User from "../../../models/User"
+import Reservation from "../../../models/Reservation"
 
 const handler = async(req, res) => {
     await dbConnect()
 
-    const { method, query } = req
+    const { method } = req
 
     if(method === "GET"){
         try {
-            const users = await User.find({...query})
-            res.status(200).json(users)
+            const reservation = await Reservation.find()
+            res.status(200).json(reservation)
         } catch (error) {
             console.log(error)
         }
@@ -17,8 +17,8 @@ const handler = async(req, res) => {
 
     if(method === "POST"){
         try {
-            const newUser = await User.create(req.body)
-            res.status(200).json(newUser)
+            const newReservation = await Reservation.create(req.body)
+            res.status(201).json(newReservation)
         } catch (error) {
             console.log(error)
         }
