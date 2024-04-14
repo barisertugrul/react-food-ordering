@@ -28,14 +28,14 @@ const MenuItem = ({ product }) => {
     <div className="bg-secondary rounded-3xl">
         <div className="w-full bg-[#f1f2f3] h-[210px] grid place-content-center rounded-bl-[46px] rounded-tl-2xl rounded-tr-2xl">
             <Link className="cursor-pointer" href={`/product/${product._id}`}>
-                <div className="relative w-36 h-36 hover:scale-110 transition-all">
+                <div className="relative w-36 h-36 hover:scale-110 transition-all cursor-pointer">
                     <Image src={product.img} alt="" layout="fill" className="" priority />
                 </div>
             </Link>
         </div>
         <div className="p-[25px] text-white">
             <Link className="cursor-pointer" href={`/product/${product._id}`}>
-                <h4 className="text-xl font-semibold mb-2">{product.title}</h4>
+                <h4 className="text-xl font-semibold mb-2 cursor-pointer hover:text-primary">{product.title}</h4>
             </Link>
             <p className="text-[15px] mb-4">
                 {product.desc}

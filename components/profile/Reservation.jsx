@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import Title from '../ui/Title'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { useSession } from 'next-auth/react'
 
 const Reservation = ({ user }) => {
     
@@ -17,6 +16,8 @@ const Reservation = ({ user }) => {
             }
 
             const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reservations`,{params})
+
+            console.log(URL)
             setReservations(res.data)
         } catch (error) {
             console.log(error)
@@ -35,6 +36,7 @@ const Reservation = ({ user }) => {
             })
             if(res.status === 200){
                 setReservations([res.data, ...reservations.filter((reservation) => reservation._id !== id)])
+                // or getReservations()
                 toast.warning("Booking cancelled!")
             }
         } catch (error) {

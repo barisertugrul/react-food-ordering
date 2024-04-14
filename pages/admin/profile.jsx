@@ -76,6 +76,7 @@ const Profile = () => {
                 setIsAddProductModal(true)
                 setIsProductAdded(false)
             }}
+            title='Add new product'
         >
             +
         </button>}

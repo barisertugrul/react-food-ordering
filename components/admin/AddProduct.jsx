@@ -5,6 +5,7 @@ import Title from "../ui/Title"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { toast } from "react-toastify"
+import Input from "../form/Input"
 
 
 const AddProduct = ({setIsAddProductModal, setIsProductAdded}) => {
@@ -78,7 +79,7 @@ const AddProduct = ({setIsAddProductModal, setIsProductAdded}) => {
 
         try {
             const uploadRes = await axios.post(
-                "https://api.cloudinary.com/v1_1/ertdemo/image/upload", data
+                `${process.env.NEXT_PUBLIC_CLOUDINARY_API_URL}/image/upload/`, data
             )
 
             const { url } = uploadRes.data
@@ -125,36 +126,44 @@ const AddProduct = ({setIsAddProductModal, setIsProductAdded}) => {
                                 onChange={handleOnChange}
                                 className="hidden"
                              />
-                            <button className="btn-primary !rounded-none !bg-blue-600 pointer-events-none">Choose an Image</button>
+                            <button className="btn-primary !bg-blue-600 pointer-events-none">Choose an Image</button>
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             {imageSrc && <img src={imageSrc} alt="" className="w-14 h-14" />}
                         </label>
                     </div>
                     <div className="flex flex-col text-sm mt-4">
-                        <span className="font-semibold mb-[2px]">Title</span>
-                        <input
+                        <span className="font-semibold mb-2">Title</span>
+                        <Input
                             type="text"
-                            className="border-2 p-1 text-sm px-1 outline-none"
+                            //className="border-2 p-1 text-sm px-1 outline-none"
                             placeholder="Write a title..."
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-col text-sm mt-4">
-                        <span className="font-semibold mb-[2px]">Description</span>
+                        <span className="font-semibold mb-2">Description</span>
                         <textarea
-                            className="border-2 p-1 text-sm px-1 outline-none"
+                            className="h-14 w-full border outline-none rounded-xl px-4 peer 
+                            pt-2
+                            border-primary
+                            has-value
+                         p-1 text-sm"
                             placeholder="Write a description..."
                             onChange={(e) => setDesc(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-col text-sm mt-4">
-                        <span className="font-semibold mb-[2px]">Select Category</span>
+                        <span className="font-semibold mb-2">Select Category</span>
                         <select
-                            className="border-2 p-1 text-sm px-1 outline-none"
-                            placeholder="Write a description..."
+                            className="h-14 w-full border outline-none rounded-xl px-4 peer 
+                            pt-2
+                            border-primary
+                            has-value
+                             p-1 text-sm"
+                            placeholder="Chose a category..."
                             onChange={changeCategory}
                         >
-                            <option value="0">Choose an category...</option>
+                            <option className="!text-gray-400" value="0">Choose a category...</option>
                         {categories.length > 0 && categories.map((item) => (
                             <option key={item._id} value={item._id}>{item.title}</option>
                         ))}
@@ -165,29 +174,29 @@ const AddProduct = ({setIsAddProductModal, setIsProductAdded}) => {
                         {
                             category && category.title.toLowerCase() === "pizza" ? (
                                 <div className="flex justify-between md:flex-nowrap flex-wrap gap-4">
-                                    <input
+                                    <Input
                                         type="number"
-                                        className="border-b-2 p-1 pl-0 text-sm px-1 outline-none"
+                                        addedClass="border-t-0 border-r-0 border-l-0"
                                         placeholder="small"
                                         onChange={(e) => changePrice(e, 0)}
                                     />
-                                    <input
+                                    <Input
                                         type="number"
-                                        className="border-b-2 p-1 pl-0 text-sm px-1 outline-none"
+                                        addedClass="border-t-0 border-r-0 border-l-0"
                                         placeholder="medium"
                                         onChange={(e) => changePrice(e, 1)}
                                     />
-                                    <input
+                                    <Input
                                         type="number"
-                                        className="border-b-2 p-1 pl-0 text-sm px-1 outline-none"
+                                        addedClass="border-t-0 border-r-0 border-l-0"
                                         placeholder="large"
                                         onChange={(e) => changePrice(e, 2)}
                                     />
                                 </div>
                             ) : (
-                                <input
+                                <Input
                                     type="number"
-                                    className="border-b-2 p-1 pl-0 text-sm px-1 outline-none"
+                                    addedClass="border-t-0 border-r-0 border-l-0"
                                     placeholder="Price"
                                     onChange={(e) => setPrices([e.target.value])}
                                 />
@@ -197,17 +206,17 @@ const AddProduct = ({setIsAddProductModal, setIsProductAdded}) => {
                     <div className="flex flex-col text-sm mt-4">
                         <span className="font-semibold mb-[2px]">Extra</span>
                         <div className="flex md:flex-nowrap flex-wrap gap-4">
-                            <input
+                            <Input
                                 type="text"
-                                className="border-b-2 p-1 pl-0 text-sm px-1 outline-none"
+                                addedClass="border-t-0 border-r-0 border-l-0"
                                 placeholder="item"
                                 name="text"
                                 value={extra.text}
                                 onChange={(e) => setExtra({...extra, [e.target.name]:e.target.value})}
                             />
-                            <input
+                            <Input
                                 type="number"
-                                className="border-b-2 p-1 pl-0 text-sm px-1 outline-none"
+                                addedClass="border-t-0 border-r-0 border-l-0"
                                 placeholder="price"
                                 name="price"
                                 value={extra.price}

@@ -67,7 +67,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Campaign System
 - Product Edit / Update System
 - Customer Comment System (Testimonials)
-- Socket IO System (for order status changing)
+- Socket IO System (for order status changing - real time update)
 - Payment System
 - Multi-language support
 - Discounts, coupons management

@@ -8,6 +8,7 @@ const Input = (props) => {
     value,
     placeholder,
     isrequired,
+    addedClass,
     ...inputProps
   } = props;
    
@@ -21,12 +22,12 @@ const Input = (props) => {
                 ${type !== "datetime-local" && "pt-2"}
                 ${touched && errorMessage ? "border-danger" : "border-primary"}
                 ${value ? "has-value" : ""}
-                `}
+                ${addedClass || ''}`}
           required = { isrequired }
           {...inputProps}
         />
         {type !== "datetime-local" && (
-          <span className="absolute top-0 left-0 px-4 text-sm flex items-center h-full peer-focus:h-7 peer-focus:text-xs  peer-[&.has-value]:text-xs peer-[&.has-value]:h-7 transition-all ">
+          <span className="absolute text-gray-400 top-0 left-0 px-4 text-sm flex items-center h-full peer-focus:h-7 peer-focus:text-xs  peer-[&.has-value]:text-xs peer-[&.has-value]:h-7 transition-all ">
             {placeholder}
           </span>
         )}

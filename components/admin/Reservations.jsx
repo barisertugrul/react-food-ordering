@@ -58,6 +58,7 @@ const Reservations = () => {
             })
             if(res.status === 200){
                 setReservations([res.data, ...reservations.filter((reservation) => reservation._id !== id)])
+                // or getReservations()
                 toast.success("The table number has been updated successfully.)")
             }
         } catch (error) {
