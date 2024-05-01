@@ -52,18 +52,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ![React Food Ordering Full Home Page](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/_ss-fullpage.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_1.png)
-
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_2.png)
-
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_3.png)
-
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_4.png)
-
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_5.png)
-
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_6.png)
-
 ![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_7.png)
 
 ![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_8.png)
