@@ -52,39 +52,39 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ![React Food Ordering Full Home Page](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/_ss-fullpage.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_1_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_1.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_2_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_2.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_3_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_3.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_4_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_4.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_5_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_5.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_6_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_6.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_7_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_7.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_8_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_8.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_9_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_9.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_10_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_10.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_11_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_11.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_12_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_12.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_13_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_13.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_14_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_14.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_15_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_15.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_16_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_16.png)
 
-![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_17_.png)
+![React Food Ordering Screenshot](https://github.com/barisertugrul/react-food-ordering/blob/main/public/screenshots/ss_17.png)
 
 ## Technology or libraries used:
 - React
