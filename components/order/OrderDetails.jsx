@@ -21,15 +21,18 @@ const OrderDetails = ({order}) => {
                 res?.data?.map(async (orderDetail) => 
                     {
                         const orderedProduct = await getOrderedProduct(orderDetail.productId)
-                        const product = {
-                            img: orderedProduct.img || "",
-                            title: orderedProduct.title || "",
-                            id: orderedProduct._id || "",
-                            size: orderDetail.size || "",
-                            extras: [...orderDetail.extras] || null,
-                            quantity: orderDetail.quantity || 0
+                        if(orderedProduct){
+                            const product = {
+                                img: orderedProduct.img || "",
+                                title: orderedProduct.title || "",
+                                id: orderedProduct._id || "",
+                                size: orderDetail.size || "",
+                                extras: [...orderDetail.extras] || null,
+                                quantity: orderDetail.quantity || 0
+                            }
+                            productList.push(product)
                         }
-                        productList.push(product)
+                        
                         setProducts([...productList])
                     }
                 )

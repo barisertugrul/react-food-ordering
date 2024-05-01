@@ -1,4 +1,4 @@
-This project was developed during the [React (Next.js) ile Full Stack Yemek Sipariş Projesi](https://www.udemy.com/course/react-nextjs-ile-full-stack-yemek-siparis-projesi).
+This project was developed thanks to the [React (Next.js) ile Full Stack Yemek Sipariş Projesi](https://www.udemy.com/course/react-nextjs-ile-full-stack-yemek-siparis-projesi) course available on Udemy.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
