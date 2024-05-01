@@ -81,7 +81,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Redux
 - Redux-Toolkit
 - Next-Auth
-- Formic
+- Formik
 - MongoDB
 - Mongoose
 
